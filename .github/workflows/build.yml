@@ -54,7 +54,7 @@ jobs:
           cp index_template.html index.html
           sed -i 's|\${repo_url}|https://ldppkong.github.io/jailbreak-repo/|g' index.html
 
-      # 7️⃣ Commit & Push（自动处理远程冲突）
+      # 7️⃣ Commit & Push（仅在有变化时，自动处理远程冲突）
       - name: Commit and Push All
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -62,10 +62,16 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+          # 添加需要更新的文件
           git add Packages Packages.gz Release index.html
-          git diff --cached --quiet || git commit -m "Update Packages and index.html"
 
-          # 拉取远程最新内容，允许 fast-forward
+          # 如果没有更改，则跳过 push
+          git diff --cached --quiet && echo "No changes to commit, skipping push." && exit 0
+
+          # 提交更新
+          git commit -m "Update Packages and index.html"
+
+          # 拉取远程最新 commit 并 rebase，避免冲突
           git pull --rebase origin main
 
           # 推送到远程
