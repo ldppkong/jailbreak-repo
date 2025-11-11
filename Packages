@@ -1,0 +1,16 @@
+Package: cn.null.fuckwechatadblocker
+Version: 0.0.1-1+debug
+Architecture: iphoneos-arm
+Maintainer: null
+Installed-Size: 104
+Depends: mobilesubstrate (>= 0.9.5000)
+Filename: ./debs/cn.null.fuckwechatadblocker_0.0.1-1+debug_iphoneos-arm.deb
+Size: 16788
+MD5sum: 5cd7cdae88e96ef88e17c2e8d5508a7d
+SHA1: b35aaad4872a03d8d7963809784659cf25fb32ff
+SHA256: ef7938880f69b82e8a90ebbf3cf07f8455913f3de33a536fb6fe94f71be2ab50
+Section: Tweaks
+Description: An awesome MobileSubstrate tweak!
+Author: null
+Name: FuckWeChatAdBlocker
+
