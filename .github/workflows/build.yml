@@ -10,10 +10,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Generate Packages
+      - name: Install dpkg-dev
         run: |
           sudo apt update
           sudo apt install -y dpkg-dev
+
+      - name: Generate Packages
+        run: |
           dpkg-scanpackages ./debs /dev/null > Packages
           gzip -k -f Packages
           echo "Origin: LDPPKONG Repo" > Release
