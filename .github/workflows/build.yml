@@ -1,0 +1,34 @@
+name: Build Repo
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate Packages
+        run: |
+          sudo apt update
+          sudo apt install -y dpkg-dev
+          dpkg-scanpackages ./debs /dev/null > Packages
+          gzip -k -f Packages
+          echo "Origin: LDPPKONG Repo" > Release
+          echo "Label: LDPPKONG Repo" >> Release
+          echo "Suite: stable" >> Release
+          echo "Version: 1.0" >> Release
+          echo "Codename: ios" >> Release
+          echo "Architectures: iphoneos-arm" >> Release
+          echo "Components: main" >> Release
+          echo "Description: LDPPKONG Jailbreak Repo" >> Release
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Packages Packages.gz Release
+          git commit -m "Update Packages" || echo "No changes to commit"
+          git push
