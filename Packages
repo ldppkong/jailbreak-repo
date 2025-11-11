@@ -16,3 +16,18 @@ Author: Curtin
 Icon: https://raw.githubusercontent.com/curtinlv/PKCUpdateLog/main/img/pkc_4_135x135.png
 Name: PKC_无根
 
+Package: com.tencent.themebox
+Version: 2.1.9
+Architecture: iphoneos-arm64
+Maintainer: WeChat
+Depends: mobilesubstrate (>= 0.9.5000)
+Filename: ./debs/主题盒子_无根.deb
+Size: 6420134
+MD5sum: 05be1962bfcd83feffa6046ef2b77c13
+SHA1: a613f5bab6f19b3be7e58f07b730bec886bc5bb5
+SHA256: ebb9da96566039cfcebaa62f18fdd83b0690002a433dfac6e1bc3e5a77ff3cc1
+Section: Tweaks
+Description: 微信主题盒子
+Author: WeChat
+Name: 主题盒子
+
